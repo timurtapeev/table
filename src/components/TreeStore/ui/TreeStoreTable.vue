@@ -3,6 +3,8 @@ import { TreeStore } from '@/components/TreeStore/model/treeStore.ts'
 import { AgGridVue } from 'ag-grid-vue3'
 import { makeTree } from '@/components/TreeStore/lib/makeTree.ts'
 import type { TreeStoreData } from '@/components/TreeStore/types/treeStoreData.ts'
+import type { GridOptions } from 'ag-grid-community'
+import type { TreeStoreNode } from '@/components/TreeStore/types/treeStore.ts'
 
 const props = defineProps<{
   list: TreeStoreData[]
@@ -11,7 +13,7 @@ const props = defineProps<{
 const store = new TreeStore(props.list)
 const value = store.getAll()
 
-const gridOptions = {
+const gridOptions: GridOptions<TreeStoreNode> = {
   treeData: true,
   treeDataChildrenField: 'children',
   rowData: makeTree(value),
